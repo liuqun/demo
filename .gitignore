@@ -31,3 +31,18 @@ Makefile.in
 # http://www.gnu.org/software/texinfo
 
 /texinfo.tex
+
+# C/C++
+
+*.[oa]
+
+# ./configure
+
+Makefile
+.deps
+config.log
+config.status
+
+# tarballs
+
+*.tar.*
