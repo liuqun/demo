@@ -1,6 +1,6 @@
 #pragma once
 
-#if 1
+#if HAVE_TSS2_API_VERSION_MAJOR >= 2
 #  include <tss2/tss2_sys.h>
 #  include <tss2/tss2_tcti.h>
 #  include <tss2/tss2_tcti_device.h>
@@ -9,19 +9,19 @@
 #    include <tcti/tss2-tcti-tabrmd.h>
 #  endif /* HAVE_TSS2_TCTI_TABRMD */
 #endif
-#if 0 /* ENABLE_BACKWARD_COMPATIBLE_LAYER_FOR_LEGACY_TSS_HEADERS */
+#if HAVE_TSS2_API_VERSION_MAJOR <= 1
 #  include <sapi/tpm20.h>
 #  include <tcti/tcti_device.h>
 #  include <tcti/tcti_socket.h>
 #  ifdef HAVE_TSS2_TCTI_TABRMD
 #    include <tcti/tcti-tabrmd.h>
 #  endif /* HAVE_TSS2_TCTI_TABRMD */
-#endif /* ENABLE_BACKWARD_COMPATIBLE_LAYER_FOR_LEGACY_TSS_HEADERS */
+#endif
 
 /** Compatible TSS2_ABI_VERSION guessing-out method */
 const TSS2_ABI_VERSION guess_tss2_abi_version(TSS2_ABI_VERSION *answer);
 
-#if 1
+#if HAVE_TSS2_API_VERSION_MAJOR >= 2
 
 //typedef char* TSS_COMPAT_TCTI_DEVICE_CONF;
 //
@@ -39,7 +39,7 @@ const TSS2_ABI_VERSION guess_tss2_abi_version(TSS2_ABI_VERSION *answer);
 
 #endif
 ////////////////////////////////////////////////////////////////////////////////////////////////
-#if 0
+#if HAVE_TSS2_API_VERSION_MAJOR <= 1
 
 //#define Tss2_Tcti_Device_Init(x, y, z) InitDeviceTcti(x, y, &z)
 //#define Tss2_Tcti_Tabrmd_Init(x, y, z) tss2_tcti_tabrmd_init(x, y)
@@ -89,7 +89,6 @@ const TSS2_ABI_VERSION guess_tss2_abi_version(TSS2_ABI_VERSION *answer);
 //#define TSS2L_SYS_AUTH_RESPONSE TSS2_SYS_RSP_AUTHS
 //#define TSS2L_SYS_AUTH_COMMAND TSS2_SYS_CMD_AUTHS
 
-inline
 //#define TSS_COMPAT_AUTH_COMMAND_BEGIN(x) TPMS_AUTH_COMMAND session_data = { .sessionHandle = x}; \
 //  TPMS_AUTH_COMMAND *session_data_array[1] = { &session_data };
 //

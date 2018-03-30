@@ -37,9 +37,10 @@ if(TSS2_TCTI_TABRMD_FOUND)
 endif()
 
 if (TSS2_SYSTEM_API_VERSION VERSION_LESS "2.0")
-  target_compile_definitions(demo PUBLIC ENABLE_BACKWARD_COMPATIBLE_LAYER_FOR_LEGACY_TSS_HEADERS)
+  target_compile_definitions(demo PUBLIC HAVE_TSS2_API_VERSION_MAJOR=1)
   target_link_libraries(demo ${TSS2_SYSTEM_API_LIBRARIES} ${TSS2_TCTI_SOCKET_LIBRARIES} ${TSS2_TCTI_DEVICE_LIBRARIES} ${TSS2_TCTI_TABRMD_LIBRARIES})
 else()
+  target_compile_definitions(demo PUBLIC HAVE_TSS2_API_VERSION_MAJOR=2)
   target_link_libraries(demo ${TSS2_SYSTEM_API_LIBRARIES} -ldl)
 endif()
 

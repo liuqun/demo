@@ -11,6 +11,9 @@ typedef enum {
     OPTION_TABRMD=2,
 } option_t;
 
+void foobar(option_t opt);
+
+#if HAVE_TSS2_API_VERSION_MAJOR >= 2
 void foobar(option_t opt)
 {
 const struct {
@@ -70,6 +73,7 @@ CLEANUP_TCTI_CTX:
     }
     return;
 }
+#endif /* HAVE_TSS2_API_VERSION_MAJOR */
 
 int main()
 {
